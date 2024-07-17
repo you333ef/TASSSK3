@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل دخول</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="./leon.css">
+</head>
+<body>
+    <div class="container d-flex flex-column flex-lg-row justify-content-center align-items-center vh-100">
+        <div class="form-container p-4 bg-white rounded-3 shadow">
+            <form id="loginForm" class="login-form text-center">
+                <h2>تسجيل دخول</h2>
+                <p>قم بتسجيل الدخول للوصول لحسابك</p>
+                <div class="mb-3">
+                    <input type="email" id="email" class="form-control" placeholder="البريد الإلكتروني" required>
+                </div>
+                <div class="mb-3">
+                    <input type="password" id="password" class="form-control" placeholder="كلمة المرور" required>
+                </div>
+                <button type="submit" class="btn btn-gradient w-100 mb-3">متابعة</button>
+                <p>أو سجل دخول بواسطة وسائل التواصل</p>
+                <button type="button" class="btn btn-twitter w-100 mb-2">
+                    <i class="fab fa-twitter"></i> تسجيل دخول بواسطة تويتر
+                </button>
+                <button type="button" class="btn btn-facebook w-100">
+                    <i class="fab fa-facebook-f"></i> تسجيل دخول بواسطة فيسبوك
+                </button>
+            </form>
+        </div>
+        <div class="welcome-container p-4 d-none d-lg-flex flex-column justify-content-center align-items-center text-white text-center">
+            <h2>مرحباً بعودتك</h2>
+            <p>قم بتسجيل الدخول للوصول لحسابك</p>
+            <div class="icon mt-4">
+                <i class="fas fa-shopping-bag fa-4x"></i>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let email = localStorage.getItem('email');
+            let password = localStorage.getItem('password');
+
+            if (email && password) {
+                window.location.href = 'welcome.html';
+            }
+        });
+
+        let loginForm = document.getElementById('loginForm');
+        let emailInput = document.getElementById('email');
+        let passwordInput = document.getElementById('password');
+
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // منع النموذج من الإرسال الافتراضي
+
+            let emailValue = emailInput.value;
+            let passwordValue = passwordInput.value;
+
+            // التحقق من إدخال البريد الإلكتروني وكلمة المرور
+            if (emailValue && passwordValue) {
+                // تخزين البيانات في الـLocal Storage
+                localStorage.setItem('email', emailValue);
+                localStorage.setItem('password', passwordValue);
+
+                // توجيه المستخدم لصفحة الترحيب
+                window.location.href = 'welcome.html';
+            } else {
+                // عرض تحذير لو الحقول فاضية
+                alert('من فضلك ادخل البريد الإلكتروني وكلمة المرور');
+            }
+        });
+    </script>
+</body>
+</html>
