@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Design</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="out.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="icon"><i class="fab fa-facebook-f"></i></div>
+            <div class="icon"><i class="fab fa-instagram"></i></div>
+            <div class="icon"><i class="fab fa-whatsapp"></i></div>
+            <div class="icon"><i class="fab fa-twitter"></i></div>
+        </div>
+        <div class="main">
+            <div class="header">
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <div class="checkout">
+                    <h2>Login out</h2>
+                </div>
+            </div>
+            <div class="content">
+                <button class="pay-btn" onclick="logout()">Yes</button>
+                <button class="nesy-btn" onclick="RETURN()">No</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function logout() {
+            // مسح بيانات الدخول من الـLocal Storage
+            localStorage.removeItem('email');
+            localStorage.removeItem('password');
+            // إعادة التوجيه لصفحة تسجيل الدخول
+            window.location.href = 'index.html';
+        }
+        function RETURN(){
+            window.location.href='welcome.html'
+        }
+    </script>
+</body>
+</html>

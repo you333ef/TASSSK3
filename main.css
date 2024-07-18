@@ -1,0 +1,46 @@
+.RRR{
+    margin-top: 70px;
+}
+#products-container{
+  height: 200px;
+}
+
+.parent{
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    background-color: black;
+    padding: 20px;
+    color: #fff;
+
+}
+.row{
+    margin-top: 200px;
+}
+.NAVIGATION{
+    color: black;
+ margin-top: 0;
+ font-family:sans-serif;
+position: fixed;
+z-index: 1000;
+top: 0;
+width: 100%;
+
+    font-size: 25px;
+}
+.CART,.OUT{
+   color: #fff;
+}
+.RWWOW{
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+}
+.card-img-top{
+    width: 250px;
+    height: 220px;
+    background-size: cover;
+}
+.OUT:hover{
+color: rgb(89, 83, 83);
+}
