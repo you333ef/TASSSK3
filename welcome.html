@@ -22,9 +22,7 @@
     <div class="container RRR"> 
         <div id="products-container" class="row"></div>
     </div>
-
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             fetch('https://fakestoreapi.com/products')
@@ -33,12 +31,17 @@
                     // Get the container to display products
                     const container = document.getElementById('products-container');
 
-                    // Function to truncate text using slice
-                    function truncateText(text, maxLength) {
-                        return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
-                    }
-
                     products.forEach(product => {
+                        // تقصير العنوان والوصف داخل الحلقة
+                        let title = product.title;
+                        if (title.length > 10) {
+                            title = title.slice(0, 10) + '...';
+                        }
+                        let description = product.description;
+                        if (description.length > 100) {
+                            description = description.slice(0, 100) + '...';
+                        }
+
                         // Create a col div for each product
                         const productCol = document.createElement('div');
                         productCol.classList.add('col-12', 'col-sm-6', 'col-md-4', 'col-lg-3', 'mb-4');
@@ -49,12 +52,12 @@
 
                         // Add product details to the card
                         productCard.innerHTML = `
-                            <img src="${product.image}" class="card-img-top" alt="${product.title}">
+                            <img src="${product.image}" class="card-img-top" alt="${title}">
                             <div class="card-body">
-                                <h5 class="card-title">${product.title}</h5>
-                                <p class="card-text">${truncateText(product.description, 100)}</p>
-                                <p class="card-text"><strong>$${product.price}</strong></p>
-                                <button class="btn btn-dark text-center ADD" data-id="${product.id}">Add To Cart</button>
+                                <h5 class="card-title">${title}</h5>
+                                <p class="card-text">${description}</p>
+                                <p class="card-text text-center"><strong>$${product.price}</strong></p>
+                                <button class="btn btn-dark d-block m-auto text-center ADD" data-id="${product.id}">Add To Cart</button>
                             </div>
                         `;
 
