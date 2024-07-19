@@ -11,18 +11,18 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    
-    
     <div class="container ">
-        <div class="COCO"> <h1 class="my-4 " class="Product">Product Cart</h1>
-            <h2 class="my-4" onclick="RETURN_RIGHT()" class="RETURN"><i class="fa-solid fa-circle-left" id="LEFT"></i></h2></div>
-       
+        <div class="COCO"> 
+            <h1 class="my-4 " class="Product">Product Cart</h1>
+            <h2 class="my-4" onclick="RETURN_RIGHT()" class="RETURN">
+                <i class="fa-solid fa-circle-left" id="LEFT"></i>
+            </h2>
+        </div>
         <div id="cart-items" class="row"></div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-          
             const cart = JSON.parse(localStorage.getItem('cart')) || [];
             
             // Get the container to display cart items
@@ -64,10 +64,21 @@
                 function removeFromCart(index) {
                     cart.splice(index, 1);
                     localStorage.setItem('cart', JSON.stringify(cart));
+                    updateCartCount();
                     window.location.reload();
                 }
+
+                function updateCartCount() {
+                    const cartCount = document.getElementById('cart-count');
+                    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                    cartCount.textContent = cart.length;
+                }
+
+                // Initialize cart count
+                updateCartCount();
             }
         });
+
         function RETURN_RIGHT(){
             window.location.href='welcome.html';
         }
