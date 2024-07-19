@@ -70,8 +70,10 @@
 
                 function updateCartCount() {
                     const cartCount = document.getElementById('cart-count');
-                    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-                    cartCount.textContent = cart.length;
+                    if (cartCount) {
+                        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                        cartCount.textContent = cart.length;
+                    }
                 }
 
                 // Initialize cart count
