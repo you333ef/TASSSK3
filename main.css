@@ -76,6 +76,11 @@ color: rgb(89, 83, 83);
     .card-title, .card-text {
         text-align: center; /* تخلي النص في النص */
     }
+    .RWWOW{
+        display: flex;
+        justify-content: space-around;
+        gap: 40px;
+    }
 }
 
 
