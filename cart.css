@@ -71,4 +71,16 @@
         border-top: 2px solid #ccc;
         margin-top: 20px;
     }
+    /* إخفاء العنوان على الشاشات التي عرضها أقل من 768px */
+@media (max-width: 768px) {
+    .TITLE {
+        display: none;
+    }
+}
+#total-price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
     
