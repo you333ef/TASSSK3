@@ -6,53 +6,48 @@
     <title>Cart</title>
     <link rel="stylesheet" href="./cart.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-    <!-- Include Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container ">
-        <div class="COCO"> 
-            <h1 class="my-4 " class="Product">Product Cart</h1>
-            <h2 class="my-4" onclick="RETURN_RIGHT()" class="RETURN">
+    <div class="container">
+        <div class="COCO">
+            <h1 class="my-4 Product">Product Cart</h1>
+            <h2 class="my-4 RETURN" onclick="RETURN_RIGHT()">
                 <i class="fa-solid fa-circle-left" id="LEFT"></i>
             </h2>
         </div>
         <div id="cart-items" class="row"></div>
+        <div id="total-price" class="my-4">Total Price: $0</div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            
-            // Get the container to display cart items
             const cartItemsContainer = document.getElementById('cart-items');
+            const totalPriceContainer = document.getElementById('total-price');
 
             if (cart.length === 0) {
                 cartItemsContainer.innerHTML = '<p>No items in cart.</p>';
             } else {
+                let totalPrice = 0;
                 cart.forEach((product, index) => {
-                    // Create a div for each cart item
                     const cartItem = document.createElement('div');
                     cartItem.classList.add('col-12');
-
-                    // Add product details to the cart item
                     cartItem.innerHTML = `
                         <div class="cart-item">
                             <img src="${product.image}" alt="${product.title}">
                             <div class="product-info">
-                                <h5 id="OOOO">${product.title}</h5>
+                                <h5>${product.title}</h5>
                                 <p class="product-price">$${product.price}</p>
                             </div>
                             <button class="remove-btn" data-index="${index}">Remove Product</button>
                         </div>
                     `;
-
-                    // Append the cart item to the container
                     cartItemsContainer.appendChild(cartItem);
+                    totalPrice += parseFloat(product.price);
                 });
+                totalPriceContainer.textContent = `Total Price: $${totalPrice.toFixed(2)}`;
 
-                // Add event listeners to remove buttons
                 const removeButtons = document.querySelectorAll('.remove-btn');
                 removeButtons.forEach(button => {
                     button.addEventListener('click', function() {
@@ -76,13 +71,12 @@
                     }
                 }
 
-                // Initialize cart count
                 updateCartCount();
             }
         });
 
-        function RETURN_RIGHT(){
-            window.location.href='welcome.html';
+        function RETURN_RIGHT() {
+            window.location.href = 'welcome.html';
         }
     </script>
 
